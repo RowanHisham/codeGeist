@@ -5,3 +5,4 @@ class netHoles:
         self.time = time
 
     def getHoleCoord(self):
+        return self.holesCoord
