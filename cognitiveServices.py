@@ -34,13 +34,18 @@ class Server:
             'application': '{string}',
         })
 
-        try:
-            # conn = http.client.HTTPSConnection('southcentralus.api.cognitive.microsoft.com')
-            conn = http.client.HTTPSConnection(self.httpAddress)
-            conn.request("POST", "/customvision/v1.0/Prediction/{projectId}/image?%s" % params, "{body}", headers)
-            response = conn.getresponse()
-            data = response.read()
-            print(data)
-            conn.close()
-        except Exception as e:
-            print("[Errno {0}] {1}".format(e.errno, e.strerror))
+        ##for taking image as input##
+        # data = cv2.imencode('.jpg', img)[1].tostring()
+
+        ##for taking file path as input##
+        img_filename = img
+        with open(img_filename, 'rb') as f:
+            data = f.read()
+
+        conn = http.client.HTTPSConnection(self.httpAddress)
+        conn.request("POST", self.subscriptionAddress, data, self.headers)
+        response = conn.getresponse()
+        data = response.read()
+        print(data)
+        conn.close()
+        return data
