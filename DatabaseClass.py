@@ -22,7 +22,11 @@ class Database:
 
     #checks if user exists in database and returns user object or return None
     def authenticateLogIn(self, username, password):
-
+        userID = self.searchUser(username,password)
+        if(userID == None):
+            return None
+        else:
+            return self.loadUser(userID)
 
     #checks if user exists in database and returns user object or return None
     def authenticatePerson(self, faceID):
@@ -30,7 +34,7 @@ class Database:
 
     #searches for user in database and if it exists returns its ID
     def searchUser(self, username, password):
-
+    
 
     #searches for user in database and if it exists returns its ID [ faceID = result_set[i][6] , userID = result_set[i][0] ]
     def searchUserFaceID(self, faceID):
