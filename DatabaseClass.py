@@ -2,9 +2,9 @@ import pyodbc
 # from datetime import datetime
 #
 # import NetHolesClass
-# import TankClass
+import TankClass
 import UserClass
-# import WaterQualityClass
+import WaterQualityClass
 # from array import *
 
 
@@ -104,18 +104,81 @@ class Database:
     # "harvestDate  = ", row[10]
     # "needsCleaning  = ", row[11]
     # "needsFixing  = ", row[12]
-    #load tanks list and returns it
-    # def loadTankList(self, userID):
+    # load tanks list and returns it
+    def loadTankList(self, userID):
+        print("LOADING TankList -------")
+        tsql = "SELECT * FROM Tanks WHERE userID = ?;"
+        with self.cursor.execute(tsql, userID):
+            row = self.cursor.fetchone()
+            tankList = []
+            while row:
+                print("LOADING TANK --")
+                print("fishttype = ", row[0])
+                print("feedingSchedule = ", row[1])
+                print("userID = ", row[2])
+                print("tankID  = ", row[3])
+                print("waterSalinityUpperThresh = ", row[4])
+                print("waterSalinityLowerThresh = ", row[5])
+                print("tempLowerThresh = ", row[6])
+                print("tempUpperThresh = ", row[7])
+                print("pHLowerThresh = ", row[8])
+                print("harvestDate  = ", row[10])
+                print("needsCleaning  = ", row[11])
+                print("needsFixing  = ", row[12])
+                fishtype = row[0]
+                feedingSchedule = row[1]
+                tankID  = row[3]
+                waterSalinityUpperThresh = row[4]
+                waterSalinityLowerThresh =  row[5]
+                tempLowerThresh =  row[6]
+                tempUpperThresh =  row[7]
+                pHLowerThresh =  row[8]
+                pHUpperThresh =  row[9]
+                harvestDate  =  row[10]
+                needsCleaning  =  row[11]
+                needsFixing  =  row[12]
+                wqList = self.loadWaterQualityList(tankID)
+                tank = TankClass.Tank(tankID,fishtype,feedingSchedule,waterSalinityUpperThresh,waterSalinityLowerThresh,tempUpperThresh,
+                                      tempLowerThresh,pHUpperThresh,pHLowerThresh,harvestDate,needsCleaning,needsFixing,None,None)
+                tankList.append(tank)
+                row = self.cursor.fetchone()
 
-    # # "tankID = ", row[0]
-    # # "time = ", row[1]
-    # # "date = ", row[2]
-    # # "pH  = ", row[3]
-    # # "temp  = ", row[4]
-    # # "waterQualityLevel = ", row[5]
-    # # load water quality list and returns it
-    # def loadWaterQualityList(self, tankID):
-    #
+            return tankList
+
+    # "tankID = ", row[0]
+    # "time = ", row[1]
+    # "date = ", row[2]
+    # "pH  = ", row[3]
+    # "temp  = ", row[4]
+    # "waterQualityLevel = ", row[5]
+    # load water quality list and returns it
+    def loadWaterQualityList(self, tankID):
+        print("LOADING waterQuality -------")
+        tsql = "SELECT * FROM Water_Quality WHERE tankID = ?;"
+        with self.cursor.execute(tsql, tankID):
+            row = self.cursor.fetchone()
+            waterQualityList = []
+
+            while row:
+                print("LOADING WQ --")
+                print("tankID = ", row[0])
+                print("time = ", row[1])
+                print("date = ", row[2])
+                print("pH  = ", row[3])
+                print("temp  = ", row[4])
+                print("waterQualityLevel = ", row[5])
+                time =  row[1]
+                date = row[2]
+                pH  = row[3]
+                temp  =  row[4]
+                waterQualityLevel = row[5]
+
+                wq = WaterQualityClass.waterQuality(date,time,pH,temp,waterQualityLevel)
+                waterQualityList.append(wq)
+                row = self.cursor.fetchone()
+
+            return waterQualityList
+
     # # "tankID = ", row[0]
     # # "holesCoord = ", row[1]
     # # "date = ", row[2]
