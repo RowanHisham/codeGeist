@@ -9,7 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import resources
 from DatabaseClass import Database
-from sensors import Sensors
+# from sensors import Sensors
 import webbrowser
 from CameraClass import Camera
 import cv2
@@ -435,7 +435,7 @@ class Ui_MainWindow(object):
             self.stackedWidget.setCurrentIndex(3)
             self.cam.start()
             timer = QtCore.QTimer()
-            timer.timeout.connect(self.camFeedFunc())
+            timer.timeout.connect(lambda: self.camFeedFunc())
             timer.start(100)
         else:
             print("INVALID USERNAME OR PASSWORD")
@@ -443,6 +443,7 @@ class Ui_MainWindow(object):
     def camFeedFunc(self):
         fr = self.cam.getFrame()
         cv2.imshow("f", fr)
+        return None
 
 
     def displayList(self, tankIndex):
