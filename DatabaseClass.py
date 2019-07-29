@@ -1,7 +1,7 @@
 import pyodbc
 # from datetime import datetime
 #
-# import NetHolesClass
+import NetHolesClass
 import TankClass
 import UserClass
 import WaterQualityClass
@@ -109,9 +109,9 @@ class Database:
         print("LOADING TankList -------")
         tsql = "SELECT * FROM Tanks WHERE userID = ?;"
         with self.cursor.execute(tsql, userID):
-            row = self.cursor.fetchone()
+            result = self.cursor.fetchall()
             tankList = []
-            while row:
+            for row in result:
                 print("LOADING TANK --")
                 print("fishttype = ", row[0])
                 print("feedingSchedule = ", row[1])
@@ -138,10 +138,10 @@ class Database:
                 needsCleaning  =  row[11]
                 needsFixing  =  row[12]
                 wqList = self.loadWaterQualityList(tankID)
+                # hList = self.loadNetHolesList(tankID)
                 tank = TankClass.Tank(tankID,fishtype,feedingSchedule,waterSalinityUpperThresh,waterSalinityLowerThresh,tempUpperThresh,
-                                      tempLowerThresh,pHUpperThresh,pHLowerThresh,harvestDate,needsCleaning,needsFixing,None,None)
+                                      tempLowerThresh,pHUpperThresh,pHLowerThresh,harvestDate,needsCleaning,needsFixing,wqList,None)
                 tankList.append(tank)
-                row = self.cursor.fetchone()
 
             return tankList
 
@@ -156,10 +156,10 @@ class Database:
         print("LOADING waterQuality -------")
         tsql = "SELECT * FROM Water_Quality WHERE tankID = ?;"
         with self.cursor.execute(tsql, tankID):
-            row = self.cursor.fetchone()
+            result = self.cursor.fetchall()
             waterQualityList = []
 
-            while row:
+            for row in result:
                 print("LOADING WQ --")
                 print("tankID = ", row[0])
                 print("time = ", row[1])
@@ -175,19 +175,38 @@ class Database:
 
                 wq = WaterQualityClass.waterQuality(date,time,pH,temp,waterQualityLevel)
                 waterQualityList.append(wq)
-                row = self.cursor.fetchone()
 
             return waterQualityList
 
-    # # "tankID = ", row[0]
-    # # "holesCoord = ", row[1]
-    # # "date = ", row[2]
-    # # "time  = ", row[3]
-    # # load net holes list
-    # def loadNetHolesList(self, tankID):
-    #
-    #
-    #
+    # "tankID = ", row[0]
+    # "holesCoord = ", row[1]
+    # "date = ", row[2]
+    # "time  = ", row[3]
+    # load net holes list
+    def loadNetHolesList(self, tankID):
+        print("LOADING netHoles -------")
+        tsql = "SELECT * FROM Holes WHERE tankID = ?;"
+        with self.cursor.execute(tsql, tankID):
+            result = self.cursor.fetchall()
+            holesList = []
+
+            for row in result:
+                print("tankID = ", row[0])
+                print("holesCoord = ", row[1])
+                print("date = ", row[2])
+                print("time  = ", row[3])
+                tankID = row[0]
+                holesCoord = row[1]
+                date = row[2]
+                time  = row[3]
+
+                h = NetHolesClass.netHoles(holesCoord,date,time)
+                holesList.append(h)
+
+            return holesList
+
+
+
     # def addFaceID(self, user):
     #     """
     #     takes user object and sets its face ID
