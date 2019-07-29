@@ -434,7 +434,7 @@ class Ui_MainWindow(object):
             self.displayList(self.tankIndex)
             self.stackedWidget.setCurrentIndex(3)
             self.cam.start()
-            timer = QtCore.QTimer()
+            timer = QTimer()
             timer.timeout.connect(lambda: self.camFeedFunc())
             timer.start(100)
         else:
@@ -442,9 +442,14 @@ class Ui_MainWindow(object):
 
     def camFeedFunc(self):
         fr = self.cam.getFrame()
-        cv2.imshow("f", fr)
-        return None
+        frame = cv2.cvtColor(self.fr, cv2.COLOR_BGR2RGB)
+        img = QtGui.QImage(frame, frame.shape[1], frame.shape[0], QtGui.QImage.Format_RGB888)
+        pix = QtGui.QPixmap.fromImage(img)
+        self.label_camFeed.setScaledContents(True)
+        self.label_camFeed.setPixmap(pix)
 
+    def captureImage(self):
+        return self.fr.clone()
 
     def displayList(self, tankIndex):
         if(self.user):
