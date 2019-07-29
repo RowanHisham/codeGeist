@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1002</width>
+    <height>872</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QStackedWidget" name="stackedWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1000</width>
+      <height>873</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>3</number>
+    </property>
+    <widget class="QWidget" name="loginPage">
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Images/Resources/signInBG.png);</string>
+     </property>
+     <widget class="QPushButton" name="button_signIn_signIn">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>590</y>
+        <width>320</width>
+        <height>45</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/signIn.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_faceID_signIn">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>660</y>
+        <width>320</width>
+        <height>45</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/faceID.png);
+</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_signUp_signIn">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>730</y>
+        <width>320</width>
+        <height>45</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/signUp.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_username_signIn">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>351</y>
+        <width>381</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Username</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_password_signIn">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>421</y>
+        <width>381</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::DefaultContextMenu</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);
+color: rgb(255, 255, 255);
+</string>
+      </property>
+      <property name="text">
+       <string>12345678</string>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="signupPage">
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Images/Resources/signUpBG.png);</string>
+     </property>
+     <widget class="QLineEdit" name="lineEdit_firstName_signUp">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>330</y>
+        <width>151</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>First name</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_lastName_signUp">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>330</y>
+        <width>151</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Last name</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_email_signUp">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>400</y>
+        <width>371</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Email address</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_username_signUp">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>480</y>
+        <width>371</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Username</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_password_signUp">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>560</y>
+        <width>371</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+border-image: url(:/Images/Resources/darkBlackBG.png);
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Password</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_signUp_signUp">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>640</y>
+        <width>320</width>
+        <height>45</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/signUp.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_backToSignIn">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>720</y>
+        <width>320</width>
+        <height>45</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/backSignInPressed.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="faceidPage">
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Images/Resources/faceIDWidget.png);</string>
+     </property>
+     <widget class="QLabel" name="label_cam">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>230</y>
+        <width>821</width>
+        <height>401</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/semiDarkBG.png);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="mainPage">
+     <property name="styleSheet">
+      <string notr="true">border-image: url(:/Images/Resources/mainWidgetBG.png);</string>
+     </property>
+     <widget class="QPushButton" name="button_dashboard">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>200</y>
+        <width>291</width>
+        <height>54</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	border-image: url(:/Images/Resources/dasboard.png);
+background-repeat: none;
+}
+
+QPushButton:hover{
+	border-image: url(:/Images/Resources/dashboardPressed.png);
+}
+
+QPushButton:pressed{
+	border-image: url(:/Images/Resources/dashboardPressed.png);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_createTank">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>280</y>
+        <width>291</width>
+        <height>54</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	border-image: url(:/Images/Resources/create.png);
+background-repeat: none;
+}
+
+QPushButton:hover{
+	border-image: url(:/Images/Resources/createPressed.png);
+}
+
+QPushButton:pressed{
+	border-image: url(:/Images/Resources/createPressed.png);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_analyzeTank">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>350</y>
+        <width>291</width>
+        <height>54</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	border-image: url(:/Images/Resources/analyze.png);
+background-repeat: none;
+}
+
+QPushButton:hover{
+	border-image: url(:/Images/Resources/analyzePressed.png);
+}
+
+QPushButton:pressed{
+	border-image: url(:/Images/Resources/analyzePressed.png);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_settings">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>420</y>
+        <width>291</width>
+        <height>54</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	border-image: url(:/Images/Resources/settings.png);
+background-repeat: none;
+}
+
+QPushButton:hover{
+	border-image: url(:/Images/Resources/settingsPressed.png);
+}
+
+QPushButton:pressed{
+	border-image: url(:/Images/Resources/settingsPressed.png);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_logout">
+      <property name="geometry">
+       <rect>
+        <x>78</x>
+        <y>810</y>
+        <width>130</width>
+        <height>42</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+	border-image: url(:/Images/Resources/logoutPressed.png);
+background-repeat: none;
+}
+
+QPushButton:hover{
+	border-image: url(:/Images/Resources/logout.png);
+}
+
+QPushButton:pressed{
+	border-image: url(:/Images/Resources/logout.png);
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QStackedWidget" name="stackedWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>0</y>
+        <width>711</width>
+        <height>861</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/CreateBG.png);</string>
+      </property>
+      <widget class="QWidget" name="dashboardPage">
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/Images/Resources/dashboardWidget.png);</string>
+       </property>
+       <widget class="QLabel" name="label_fishType_tankData">
+        <property name="geometry">
+         <rect>
+          <x>190</x>
+          <y>180</y>
+          <width>55</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>Salmon</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_harvestDate_tankData">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>230</y>
+          <width>71</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>29/7/2019</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_feeding_tankData">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>270</y>
+          <width>71</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>6:00:00</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_ph_tankData">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>330</y>
+          <width>55</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>--</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_temperature_tankData">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>370</y>
+          <width>55</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>22</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_fishNetHoles_tankData">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>420</y>
+          <width>55</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_fishnetNeedsCleaning_tankData">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>470</y>
+          <width>55</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>No</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_pipesNeedChanging_tankData">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>513</y>
+          <width>55</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>No</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>40</y>
+          <width>128</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QComboBox {
+border-image: url(:/Resources/comboBoxBG.png);
+	border-image: url(:/Images/Resources/comboBoxBG.png);
+    color: black;
+    font: 14px;
+    padding: 1px 0px 1px 3px; /* This (useless) line resolves a bug with the font color */
+}
+
+QComboBox:focus {
+    color: red;
+}
+
+QComboBox::drop-down 
+{
+    border: 0px; /* This seems to replace the whole arrow of the combo box */
+}</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Tank 1</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QPushButton" name="button_email">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>810</y>
+          <width>127</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	border-image: url(:/Images/Resources/EmailButton.png);
+background-repeat: none;
+}
+
+QPushButton:hover{
+	border-image: url(:/Images/Resources/EmailButtonPressed.png);
+}
+
+QPushButton:pressed{
+	border-image: url(:/Images/Resources/EmailButtonPressed.png);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="button_report">
+        <property name="geometry">
+         <rect>
+          <x>370</x>
+          <y>810</y>
+          <width>127</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	border-image: url(:/Images/Resources/report.png);
+background-repeat: none;
+}
+
+QPushButton:hover{
+	border-image: url(:/Images/Resources/reportPressed.png);
+}
+
+QPushButton:pressed{
+	border-image: url(:/Images/Resources/reportPressed.png);
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="createtankPage">
+       <widget class="QLineEdit" name="lineEdit_fishType_createTank">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>500</y>
+          <width>171</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_date_createTank">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>540</y>
+          <width>171</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_feeding_createTank">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>590</y>
+          <width>171</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_lowerTemperatureThreshold_createTank">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>640</y>
+          <width>161</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_upperTemperatureThreshold_createTank">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>690</y>
+          <width>161</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_waterQualityThreshold_createTank">
+        <property name="geometry">
+         <rect>
+          <x>430</x>
+          <y>740</y>
+          <width>161</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/darkBlackBG.png);</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="button_create_createTank">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>810</y>
+          <width>127</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/createButton.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="analyzetankPage">
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/Images/Resources/AnalyzeBG.png);</string>
+       </property>
+       <widget class="QPushButton" name="button_holes_analyzeTank">
+        <property name="geometry">
+         <rect>
+          <x>150</x>
+          <y>530</y>
+          <width>127</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/Holes.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="button_cleaning_analyzeTank">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>530</y>
+          <width>127</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/Cleaning.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="button_pipes_analyzeTank">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>530</y>
+          <width>127</width>
+          <height>33</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/Pipes.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="button_predict_analyzeTank">
+        <property name="geometry">
+         <rect>
+          <x>440</x>
+          <y>740</y>
+          <width>222</width>
+          <height>34</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/predict.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_fishnetNeedsPatching_analyzeTank">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>613</y>
+          <width>55</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>No</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_fishnetNeedsCleaning_analyzeTank">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>653</y>
+          <width>55</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>No</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_pipesNeedChanging_analyzeTank">
+        <property name="geometry">
+         <rect>
+          <x>280</x>
+          <y>705</y>
+          <width>55</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>No</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_temperature_analyzeTank">
+        <property name="geometry">
+         <rect>
+          <x>560</x>
+          <y>610</y>
+          <width>113</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>--</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_waterSalinity_analyzeTank">
+        <property name="geometry">
+         <rect>
+          <x>570</x>
+          <y>700</y>
+          <width>113</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/whiteBG.png);</string>
+        </property>
+        <property name="text">
+         <string>--</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_camFeed">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>200</y>
+          <width>551</width>
+          <height>281</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-image: url(:/Images/Resources/semiDarkBG.png);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="settingsPage">
+       <property name="styleSheet">
+        <string notr="true">border-image: url(:/Images/Resources/settingsWidget.png);</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_username_mainPage">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>140</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/blueBG.png);</string>
+      </property>
+      <property name="text">
+       <string>Abdullah Salah</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_user_admin">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>170</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/blueBG.png);</string>
+      </property>
+      <property name="text">
+       <string>user</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_userLetter">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>140</y>
+        <width>31</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-image: url(:/Images/Resources/greyBG.png);
+font: 26pt &quot;MS Shell Dlg 2&quot;;</string>
+      </property>
+      <property name="text">
+       <string>A</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="src.qrc"/>
+ </resources>
+ <connections/>
+</ui>
