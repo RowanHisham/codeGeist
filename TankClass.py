@@ -25,34 +25,53 @@ class Tank:
 
 
     def getFishType(self):
+        '''a function that returns tank's type of fish'''
+        return self.typeOfFish
 
     def getHarvestDate(self):
+        return str(self.harvestDate)
 
     def getFeedingSchedule(self):
+        return str(self.feedingSchedule)
 
     def getPipeState(self):
+        return self.needsFixing
 
     def getFishnetState(self):
+        return self.needsCleaning
 
     def getWaterQualityHistory(self):
+        return self.waterQualityHistory
 
     def getNetHolesList(self):
+        return self.holesList
 
     def checkWaterSalinity(self, waterSalinity):
         '''a function that returns true if the water salinity level is within the specified thresholds'''
-
+        if (waterSalinity < self.waterSalinityUpperThresh and waterSalinity > self.waterSalinityLowerThresh):
+            return True
+        else:
+            return False
 
     def checkTemp(self, temp):
         '''a function that returns true if the temperature is within the specified threshold'''
-
+        if (temp < self.tempUpperThresh and temp > self.tempLowerThresh):
+            return True
+        else:
+            return False
 
     def checkpH(self, pH):
         '''a function that returns true if the pH is within the specified threshold'''
-
+        if (ph < self.pHUpperThresh and ph > self.pHLowerThresh):
+            return True
+        else:
+            return False
 
     def addWaterQualityEntry(self, date, pH, temperature,waterSalinity):
         '''a function that add an entry to getting water quality and appends it to the history list'''
-
+        waterQEntry = waterQuality(date, pH, temperature, waterSalinity)
+        self.waterQualityHistory.append(waterQEntry)
 
     def getWaterQualityHistory(self):
         '''a function that returns the water quality entries history list'''
+        return self.waterQualityHistory
