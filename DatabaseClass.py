@@ -87,7 +87,6 @@ class Database:
                 tankList = self.loadTankList(userID)
                 user = UserClass.User(firstname,lastname,username,password,email,faceID,reportlink,userID,tankList)
                 return user
-
             return None
 
 
@@ -250,10 +249,3 @@ class Database:
     #
     # #return 2D array [tanksList,WaterQualityList]
     # def getData(self,username,password):
-
-from DatabaseClass import Database
-
-db = Database()
-
-userID = db.authenticateLogIn("rowan","1234")
-print("RESULT" + userID.firstName)

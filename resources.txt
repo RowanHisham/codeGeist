@@ -1,0 +1,42 @@
+----------------------
+Line Edit
+
+border-image: url(:/Resources/darkBlackBG.png);
+color: rgb(198, 198, 199);
+font: 25 10pt "Roboto Light";
+
+----------------------
+Push Button
+
+QPushButton{
+border-image: url(:/Resources/create.png);
+background-repeat: none;
+}
+
+QPushButton:hover{
+border-image: url(:/Resources/createPressed.png);
+}
+
+QPushButton:pressed{
+border-image: url(:/Resources/createPressed.png);
+}x
+
+----------------------
+Combo Box
+
+
+QComboBox {
+border-image: url(:/Resources/comboBoxBG.png);
+    color: black;
+    font: 14px;
+    padding: 1px 0px 1px 3px; /* This (useless) line resolves a bug with the font color */
+}
+
+QComboBox:focus {
+    color: red;
+}
+
+QComboBox::drop-down 
+{
+    border: 0px; /* This seems to replace the whole arrow of the combo box */
+}
