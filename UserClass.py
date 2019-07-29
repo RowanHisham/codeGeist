@@ -16,20 +16,20 @@ class User:
         self.reportLink = reportLink
 
     def getUsername(self):
-        return username
+        return self.username
     def getPassword(self):
-        return password
+        return self.password
     def getFirstName(self):
         '''a function that returns user's first name'''
-        return firstName
+        return self.firstName
     def getLastName(self):
         '''a function that returns user's last name'''
-        return lastName
+        return self.lastName
     def getUserID(self):
         '''a function that returns user ID'''
-        return userID
+        return self.userID
     def getEmail(self):
-        return email
+        return self.email
     def setFaceID(self, faceID):
         '''a function that sets face ID'''
         self.faceID = faceID
@@ -38,9 +38,9 @@ class User:
         self.reportLink = reportLink
     def getFaceID(self):
         '''a function that returns face ID'''
-        return faceID
+        return self.faceID
     def getReportLink(self):
-        return reportLink
+        return self.reportLink
 
     def creatTank(self, tankID, typeOfFish,feedingSchedule, waterSalinityUpperThresh,waterSalinityLowerThresh, tempUpperThresh, tempLowerThresh,
                  pHUpperThresh,pHLowerThresh,harvestDate,needsCleaning,needsFixing, waterQualityHistory):
@@ -77,4 +77,3 @@ class User:
             for entry in range(0, self.userTankList[tank].numOfWaterQualityEntries):
                 userWaterQualityHistory.append(self.userTankList[tank].getWaterQualityHistory)
         return userWaterQualityHistory
-

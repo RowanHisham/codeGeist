@@ -15,7 +15,6 @@ class Camera(threading.Thread):
     def openCam(self):
         # Webcam
         self.cap = cv2.VideoCapture(self.cam)
-
         # Check if the webcam is opened correctly
         if not self.cap.isOpened():
             raise IOError("Cannot open webcam")

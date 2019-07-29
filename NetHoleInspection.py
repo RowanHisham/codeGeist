@@ -30,4 +30,4 @@ class NetHoleDetection(Server):
 
 
 n = NetHoleDetection()
-print(n.predict("/home/abdullahsalah96/Pictures/scene00211.png"))
+print(n.predict("/home/abdullahsalah96/Pictures/no holes.jpg"))
