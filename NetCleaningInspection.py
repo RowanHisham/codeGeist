@@ -29,6 +29,6 @@ class NetCleaning(Server):
         else:
             return "can't determine"
 
-
-n = NetCleaning()
-print(n.predict("/home/abdullahsalah96/Downloads/me.jpg"))
+#
+# n = NetCleaning()
+# print(n.predict("/home/abdullahsalah96/Downloads/me.jpg"))

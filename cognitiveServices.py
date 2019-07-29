@@ -35,12 +35,12 @@ class Server:
         })
 
         ##for taking image as input##
-        # data = cv2.imencode('.jpg', img)[1].tostring()
+        data = cv2.imencode('.jpg', img)[1].tostring()
 
         ##for taking file path as input##
-        img_filename = img
-        with open(img_filename, 'rb') as f:
-            data = f.read()
+        # img_filename = img
+        # with open(img_filename, 'rb') as f:
+        #     data = f.read()
 
         conn = http.client.HTTPSConnection(self.httpAddress)
         conn.request("POST", self.subscriptionAddress, data, self.headers)

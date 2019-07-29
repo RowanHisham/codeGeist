@@ -13,16 +13,27 @@ from DatabaseClass import Database
 import webbrowser
 from CameraClass import Camera
 import cv2
+from NetHoleInspection import NetHoleDetection
+from NetCleaningInspection import  NetCleaning
+from notify import  emailNotifier
+from sensors import Sensors
 
 class Ui_MainWindow(object):
+    db = Database()
+    cam = Camera(0)
+    camTimer = QtCore.QTimer()
+    cam.setDaemon(True)
+    holes = NetHoleDetection()
+    clean = NetCleaning()
     def setupUi(self, MainWindow):
-        self.db = Database()
-        self.cam = Camera(0)
-        self.cam.setDaemon(True)
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1002, 872)
+        MainWindow.setWindowFlags(QtCore.Qt.CustomizeWindowHint)
+        MainWindow.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        self.centralwidget.setFixedSize(1002, 872)
         self.stackedWidget = QtWidgets.QStackedWidget(self.centralwidget)
         self.stackedWidget.setGeometry(QtCore.QRect(0, 0, 1000, 873))
         self.stackedWidget.setObjectName("stackedWidget")
@@ -429,19 +440,18 @@ class Ui_MainWindow(object):
             self.comboBox.addItem(name)
         self.tankIndex = self.comboBox.currentIndex()
         self.waterQualityList = self.db.loadWaterQualityList(self.tankList[self.tankIndex].getTankID())
-        # self.sen = Sensors("http://192.168.43.223/")
+        self.sen = Sensors("http://192.168.43.223/")
         if(self.user):
             self.displayList(self.tankIndex)
             self.stackedWidget.setCurrentIndex(3)
             self.cam.start()
-            timer = QTimer()
-            timer.timeout.connect(lambda: self.camFeedFunc())
-            timer.start(100)
+            self.camTimer.timeout.connect(lambda: self.camFeedFunc())
+            self.camTimer.start(100)
         else:
             print("INVALID USERNAME OR PASSWORD")
 
     def camFeedFunc(self):
-        fr = self.cam.getFrame()
+        self.fr = self.cam.getFrame()
         frame = cv2.cvtColor(self.fr, cv2.COLOR_BGR2RGB)
         img = QtGui.QImage(frame, frame.shape[1], frame.shape[0], QtGui.QImage.Format_RGB888)
         pix = QtGui.QPixmap.fromImage(img)
@@ -449,7 +459,7 @@ class Ui_MainWindow(object):
         self.label_camFeed.setPixmap(pix)
 
     def captureImage(self):
-        return self.fr.clone()
+        return self.fr.copy()
 
     def displayList(self, tankIndex):
         if(self.user):
@@ -459,7 +469,14 @@ class Ui_MainWindow(object):
             self.label_harvestDate_tankData.setText(self.tankList[tankIndex].getHarvestDate())
             self.label_feeding_tankData.setText(self.tankList[tankIndex].getFeedingSchedule())
             self.label_ph_tankData.setText(str(self.waterQualityList[0].getpH()))
-            # self.label_temperature_tankData.setText(self.sen.getTemperature())
+            self.temp = self.sen.getTemperature()
+            if(self.temp > 20):
+                self.label_temperature_tankData.setText( "WARNING! Temperature is " + self.temp + " C")
+                self.em = emailNotifier(self.user, self.temp)
+                self.em.sendEmail()
+            else:
+                self.label_temperature_tankData.setText(self.sen.getTemperature())
+
 
     def updateTankData(self):
         self.tankIndex = self.comboBox.currentIndex()
@@ -512,11 +529,22 @@ class Ui_MainWindow(object):
         self.stackedWidget_2.setCurrentIndex(3)
 
     def cleaningIsClicked(self):
-        pass
-
+        pred = self.clean.predict(self.captureImage())
+        if(pred == "yes"):
+            self.label_fishnetNeedsCleaning_analyzeTank.setText("Yes")
+        elif(pred == "no"):
+            self.label_fishnetNeedsCleaning_analyzeTank.setText("No")
+        else:
+            self.label_fishnetNeedsCleaning_analyzeTank.setText("Can't determine")
 
     def holesIsClicked(self):
-        pass
+        pred = self.holes.predict(self.captureImage())
+        if(pred == "yes"):
+            self.label_fishnetNeedsPatching_analyzeTank.setText("Yes")
+        elif(pred == "no"):
+            self.label_fishnetNeedsPatching_analyzeTank.setText("No")
+        else:
+            self.label_fishnetNeedsPatching_analyzeTank.setText("Can't determine")
 
     def pipesIsClicked(self):
         pass

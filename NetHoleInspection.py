@@ -29,5 +29,5 @@ class NetHoleDetection(Server):
 
 
 
-n = NetHoleDetection()
-print(n.predict("/home/abdullahsalah96/Pictures/no holes.jpg"))
+# n = NetHoleDetection()
+# print(n.predict("/home/abdullahsalah96/Pictures/no holes.jpg"))
