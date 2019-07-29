@@ -10,5 +10,6 @@ class waterQuality:
         self.waterSalinity = waterSalinity
 
     def getpH(self):
-
+        return pH
     def getTemp(self):
+        return temperature

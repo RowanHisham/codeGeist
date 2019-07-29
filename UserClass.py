@@ -16,48 +16,65 @@ class User:
         self.reportLink = reportLink
 
     def getUsername(self):
-
+        return username
     def getPassword(self):
-
+        return password
     def getFirstName(self):
         '''a function that returns user's first name'''
-
+        return firstName
     def getLastName(self):
         '''a function that returns user's last name'''
-
+        return lastName
     def getUserID(self):
         '''a function that returns user ID'''
-
+        return userID
     def getEmail(self):
-
+        return email
     def setFaceID(self, faceID):
         '''a function that sets face ID'''
-
+        self.faceID = faceID
     def setReportLink(self, reportLink):
         '''a function that sets report link'''
-
+        self.reportLink = reportLink
     def getFaceID(self):
         '''a function that returns face ID'''
-
+        return faceID
     def getReportLink(self):
-
+        return reportLink
 
     def creatTank(self, tankID, typeOfFish,feedingSchedule, waterSalinityUpperThresh,waterSalinityLowerThresh, tempUpperThresh, tempLowerThresh,
                  pHUpperThresh,pHLowerThresh,harvestDate,needsCleaning,needsFixing, waterQualityHistory):
         '''a function that appends a tank object to the user's tanks list
         and returns this newly created object'''
-
-
+        newTank = TankClass.Tank(tankID, typeOfFish,feedingSchedule, waterSalinityUpperThresh,waterSalinityLowerThresh, tempUpperThresh, tempLowerThresh,
+                 pHUpperThresh,pHLowerThresh,harvestDate,needsCleaning,needsFixing, waterQualityHistory,None)
+        self.userTankList.append(newTank)
+        return newTank
     def getTankList(self):
         '''a function that returns a list of the user's tanks'''
-
+        return userTankList
     def removeTank(self, tankID):
         '''a function that checks if the tank id exists and removes it
         returns 0 when the tank removal is successfull
         returns 1 when the tank doesn't exist'''
-
+        tankIndex = -1
+        for tank in range(0, len(self.userTankList)):
+            if (self.userTankList[i].tankID) == tankID:
+                tankIndex = tank
+            else:
+                tankIndex = -1
+        if (tankIndex != -1):
+            self.userTankList.remove(tankIndex)
+            return 0
+        else:
+            return 1
 
     def getWaterQualityHistory(self):
         '''a function that returns a full list of
         all the user's tanks' water quality entries'''
+        userWaterQualityHistory = []
+        for tank in range(0, len(self.userTankList)):
+            for entry in range(0, self.userTankList[tank].numOfWaterQualityEntries):
+                userWaterQualityHistory.append(self.userTankList[tank].getWaterQualityHistory)
+        return userWaterQualityHistory
 
