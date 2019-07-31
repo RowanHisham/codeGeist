@@ -689,10 +689,8 @@ class Ui_MainWindow(object):
             self.label_harvestDate_tankData.setText(self.tankList[tankIndex].getHarvestDate())
             self.label_feeding_tankData.setText(self.tankList[tankIndex].getFeedingSchedule())
             self.label_ph_tankData.setText(str(self.waterQualityList[0].getpH()))
+            self.temperatureReading()
 
-    def tempTimer(self):
-        t = Timer(5, self.temperatureReading)
-        t.start()
 
     def temperatureReading(self):
         print("temp timerrrrr")
@@ -729,9 +727,7 @@ class Ui_MainWindow(object):
 
     def dashboardIsClicked(self):
         self.stackedWidget_2.setCurrentIndex(0)
-        t = threading.Thread(name='thread', target=self.tempTimer())
-        t.setDaemon(True)
-        t.start()
+
 
     def createTankIsClicked(self):
         self.stackedWidget_2.setCurrentIndex(1)
@@ -767,15 +763,14 @@ class Ui_MainWindow(object):
             self.label_fishnetNeedsCleaning_analyzeTank.setText("Can't determine")
 
     def holesIsClicked(self):
-        # pred = self.holes.predict(self.captureImage())
-        self.label_fishnetNeedsPatching_analyzeTank.setText("Yes")
-        #
-        # if(pred == "yes"):
-        #     self.label_fishnetNeedsPatching_analyzeTank.setText("Yes")
-        # elif(pred == "no"):
-        #     self.label_fishnetNeedsPatching_analyzeTank.setText("No")
-        # else:
-        #     self.label_fishnetNeedsPatching_analyzeTank.setText("Can't determine")
+         pred = self.holes.predict(self.captureImage())
+
+         if(pred == "yes"):
+             self.label_fishnetNeedsPatching_analyzeTank.setText("Yes")
+         elif(pred == "no"):
+             self.label_fishnetNeedsPatching_analyzeTank.setText("No")
+         else:
+             self.label_fishnetNeedsPatching_analyzeTank.setText("Can't determine")
 
     def pipesIsClicked(self):
         pass
