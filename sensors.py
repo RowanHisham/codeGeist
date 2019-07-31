@@ -22,5 +22,5 @@ class Sensors():
         temperature = text[tempIndex: tempIndex+5]
         return temperature
 
-s = Sensors("http://192.168.43.223/")
-print(s.getTemperature())
+# s = Sensors("http://192.168.43.223/")
+# print(s.getTemperature())

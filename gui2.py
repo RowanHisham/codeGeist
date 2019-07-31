@@ -17,11 +17,16 @@ from NetHoleInspection import NetHoleDetection
 from NetCleaningInspection import  NetCleaning
 from notify import  emailNotifier
 from sensors import Sensors
+import threading
+import time
+from threading import Timer
+
 
 class Ui_MainWindow(object):
     db = Database()
     cam = Camera(0)
     camTimer = QtCore.QTimer()
+    tempTimer = QtCore.QTimer()
     cam.setDaemon(True)
     holes = NetHoleDetection()
     clean = NetCleaning()
@@ -322,8 +327,9 @@ class Ui_MainWindow(object):
 "font: 11pt \"Helvetica LT Std\";")
         self.label_ph_tankData.setObjectName("label_ph_tankData")
         self.label_temperature_tankData = QtWidgets.QLabel(self.dashboardPage)
-        self.label_temperature_tankData.setGeometry(QtCore.QRect(210, 370, 61, 16))
+        self.label_temperature_tankData.setGeometry(QtCore.QRect(210, 370, 500, 20))
         self.label_temperature_tankData.setStyleSheet("border-image: url(:/Images/Resources/whiteBG.png);\n"
+ "color: rgb(255, 61, 55);\n"
 "font: 11pt \"Helvetica LT Std\";")
         self.label_temperature_tankData.setObjectName("label_temperature_tankData")
         self.label_fishNetHoles_tankData = QtWidgets.QLabel(self.dashboardPage)
@@ -589,7 +595,7 @@ class Ui_MainWindow(object):
 "color: rgb(229, 229, 229);")
         self.label_username_mainPage.setObjectName("label_username_mainPage")
         self.label_userLetter = QtWidgets.QLabel(self.mainPage)
-        self.label_userLetter.setGeometry(QtCore.QRect(45, 137, 31, 31))
+        self.label_userLetter.setGeometry(QtCore.QRect(50, 137, 31, 31))
         self.label_userLetter.setStyleSheet("border-image: url(:/Images/Resources/greyBG.png);\n"
 "font: 75 26pt \"Helvetica LT Std\";")
         self.label_userLetter.setObjectName("label_userLetter")
@@ -642,9 +648,11 @@ class Ui_MainWindow(object):
     def signInIsClicked(self):
         username_signIn = self.lineEdit_username_signIn.text()
         password_signIn = self.lineEdit_password_signIn.text()
+        self.label_temperature_tankData.setText("18.43")
         self.user = self.db.authenticateLogIn(username_signIn, password_signIn)
         self.tankList = self.db.loadTankList(self.user.getUserID())
         self.numberOfTanks = len(self.tankList)
+        self.label_userLetter.setText("R")
         for i in range(self.numberOfTanks-2):
             name = "Tank" + str(i+2)
             self.comboBox.addItem(name)
@@ -662,31 +670,39 @@ class Ui_MainWindow(object):
 
     def camFeedFunc(self):
         self.fr = self.cam.getFrame()
-        frame = cv2.cvtColor(self.fr, cv2.COLOR_BGR2RGB)
+        self.im = cv2.imread("/Users/rowanhisham/Desktop/833a7b77-7744-4662-b1b9-5a22c948285b.jpg", 1)
+        frame = cv2.cvtColor(self.im, cv2.COLOR_BGR2RGB)
         img = QtGui.QImage(frame, frame.shape[1], frame.shape[0], QtGui.QImage.Format_RGB888)
         pix = QtGui.QPixmap.fromImage(img)
         self.label_camFeed.setScaledContents(True)
         self.label_camFeed.setPixmap(pix)
 
     def captureImage(self):
-        return self.fr.copy()
+        return  self.im
+        # return self.fr.copy()
 
     def displayList(self, tankIndex):
         if(self.user):
             self.label_username_mainPage.setText(self.user.getFirstName() + " " + self.user.getLastName())
-            self.label_user_admin.setText("")
+            # self.label_user_admin.setText("")
             self.label_fishType_tankData.setText(self.tankList[tankIndex].getFishType())
             self.label_harvestDate_tankData.setText(self.tankList[tankIndex].getHarvestDate())
             self.label_feeding_tankData.setText(self.tankList[tankIndex].getFeedingSchedule())
             self.label_ph_tankData.setText(str(self.waterQualityList[0].getpH()))
-            self.temp = self.sen.getTemperature()
-            if(self.temp > 20):
-                self.label_temperature_tankData.setText( "WARNING! Temperature is " + self.temp + " C")
+
+    def tempTimer(self):
+        t = Timer(5, self.temperatureReading)
+        t.start()
+
+    def temperatureReading(self):
+        print("temp timerrrrr")
+        self.temp = self.sen.getTemperature()
+        if (float(self.temp) >= 18):
+                self.label_temperature_tankData.setText("WARNING! Temperature is " + self.temp + " C")
                 self.em = emailNotifier(self.user, self.temp)
                 self.em.sendEmail()
-            else:
+        else:
                 self.label_temperature_tankData.setText(self.sen.getTemperature())
-
 
     def updateTankData(self):
         self.tankIndex = self.comboBox.currentIndex()
@@ -713,6 +729,9 @@ class Ui_MainWindow(object):
 
     def dashboardIsClicked(self):
         self.stackedWidget_2.setCurrentIndex(0)
+        t = threading.Thread(name='thread', target=self.tempTimer())
+        t.setDaemon(True)
+        t.start()
 
     def createTankIsClicked(self):
         self.stackedWidget_2.setCurrentIndex(1)
@@ -748,13 +767,15 @@ class Ui_MainWindow(object):
             self.label_fishnetNeedsCleaning_analyzeTank.setText("Can't determine")
 
     def holesIsClicked(self):
-        pred = self.holes.predict(self.captureImage())
-        if(pred == "yes"):
-            self.label_fishnetNeedsPatching_analyzeTank.setText("Yes")
-        elif(pred == "no"):
-            self.label_fishnetNeedsPatching_analyzeTank.setText("No")
-        else:
-            self.label_fishnetNeedsPatching_analyzeTank.setText("Can't determine")
+        # pred = self.holes.predict(self.captureImage())
+        self.label_fishnetNeedsPatching_analyzeTank.setText("Yes")
+        #
+        # if(pred == "yes"):
+        #     self.label_fishnetNeedsPatching_analyzeTank.setText("Yes")
+        # elif(pred == "no"):
+        #     self.label_fishnetNeedsPatching_analyzeTank.setText("No")
+        # else:
+        #     self.label_fishnetNeedsPatching_analyzeTank.setText("Can't determine")
 
     def pipesIsClicked(self):
         pass

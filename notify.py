@@ -13,7 +13,7 @@ class emailNotifier():
         self.sender = Email("NO-REPLY@pisces.com")
         self.recipient = Email(user.getEmail())
         self.sg = sendgrid.SendGridAPIClient(apikey = "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")
-        self.content = Content("text/plain", "WARNING Temperature is " + temps)
+        self.content = Content("text/plain", "WARNING Temperature is " + temp)
 
     def sendEmail(self):
         """
